@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
         let squareWidth = view.frame.width/6
         squareView.frame = CGRect(x: view.layoutMargins.left, y: 100, width: squareWidth, height: squareWidth)
@@ -43,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     func initAnimation() {
-        let endFrame = CGRect(x: view.frame.width - view.layoutMargins.right - view.layoutMargins.left - squareView.frame.width * 1.5, y: squareView.frame.origin.y, width: squareView.frame.width * 1.5, height: squareView.frame.height*1.5)
+        let endFrame = CGRect(x: view.frame.width - view.layoutMargins.right - view.layoutMargins.left - squareView.frame.width, y: squareView.frame.origin.y, width: squareView.frame.width, height: squareView.frame.height)
         
         animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
         animator.pausesOnCompletion = true

@@ -16,12 +16,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
         let squareWidth = view.frame.width/6
-        squareView.frame = CGRect(x: view.layoutMargins.left + 20, y: 100, width: squareWidth, height: squareWidth)
+        squareView.frame = CGRect(x: view.layoutMargins.left, y: 100, width: squareWidth, height: squareWidth)
         squareView.layer.cornerRadius = 8
         squareView.backgroundColor = .blue
         
-        slider.frame = CGRect(x: view.layoutMargins.left+20, y: 100 + squareWidth*1.5 + 30, width: view.frame.width - view.layoutMargins.left - view.layoutMargins.right - 40, height: 30)
+        slider.frame = CGRect(x: view.layoutMargins.left, y: 100 + squareWidth*1.5 + 30, width: view.frame.width - view.layoutMargins.left - view.layoutMargins.right, height: 30)
         
         view.addSubview(squareView)
         view.addSubview(slider)
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     func initAnimation() {
-        let endFrame = CGRect(x: view.frame.width - 40 - view.layoutMargins.right - view.layoutMargins.left -  squareView.frame.width * 1.5, y: squareView.frame.origin.y, width: squareView.frame.width * 1.5, height: squareView.frame.height*1.5)
+        let endFrame = CGRect(x: view.frame.width - view.layoutMargins.right - view.layoutMargins.left - squareView.frame.width * 1.5, y: squareView.frame.origin.y, width: squareView.frame.width * 1.5, height: squareView.frame.height*1.5)
         
         animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
         animator.pausesOnCompletion = true

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         squareView.layer.cornerRadius = 8
         squareView.backgroundColor = .blue
         
-        slider.frame = CGRect(x: view.layoutMargins.left, y: 100 + squareWidth*1.5 + 30, width: view.frame.width - view.layoutMargins.left - view.layoutMargins.right, height: 30)
+        slider.frame = CGRect(x: view.layoutMargins.left, y: 100 + squareWidth + 30, width: view.frame.width - view.layoutMargins.left - view.layoutMargins.right, height: 20)
         
         view.addSubview(squareView)
         view.addSubview(slider)

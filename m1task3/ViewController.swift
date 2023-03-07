@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         
         initAnimation()
         slider.addTarget(self, action: #selector(releaseSlider), for: .touchUpInside)
+        slider.addTarget(self, action: #selector(releaseSlider), for: .touchDragOutside)
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
     }
     @objc func releaseSlider(){

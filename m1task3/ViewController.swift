@@ -43,13 +43,13 @@ class ViewController: UIViewController {
         }
     }
     func initAnimation() {
-        let endFrame = CGRect(x: view.frame.width - squareView.frame.width*1.5 - view.layoutMargins.right, y: squareView.frame.origin.y, width: squareView.frame.width, height: squareView.frame.height)
-        
+        let endFrame = CGRect(x: view.frame.width - squareView.frame.width*1.5-view.layoutMargins.right, y: squareView.frame.origin.y-squareView.frame.width*0.5/2, width: squareView.frame.width*1.5, height: squareView.frame.height*1.5)
+        print(endFrame.minX+squareView.frame.width*1.5+view.layoutMargins.right)
         animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
         animator.pausesOnCompletion = true
         animator.addAnimations {
             self.squareView.frame = endFrame
-            self.squareView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2).scaledBy(x: 1.5, y: 1.5)
+            self.squareView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         }
     }
     @objc func sliderValueChanged() {

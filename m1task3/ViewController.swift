@@ -12,25 +12,36 @@ class ViewController: UIViewController {
     let squareView = UIView()
     let slider = UISlider()
     var animator: UIViewPropertyAnimator!
-    
+    var margins: UIEdgeInsets!
+    var squareWidth: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 16, bottom: 20, trailing: 16)
-        print(view.layoutMargins)
-        let squareWidth = view.frame.width/6
+        view.layoutMargins=UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16
+        )
+        margins=view.layoutMargins
+        squareWidth = view.frame.width/6
         squareView.frame = CGRect(x: view.layoutMargins.left, y: 100, width: squareWidth, height: squareWidth)
         squareView.layer.cornerRadius = 8
         squareView.backgroundColor = .blue
         
-        slider.frame = CGRect(x: view.layoutMargins.left, y: 100 + squareWidth + 30, width: view.frame.width - view.layoutMargins.left - view.layoutMargins.right, height: 20)
+        slider.frame = CGRect(x: margins.left, y: 100 + squareWidth + 30, width: view.frame.width - margins.left - margins.right, height: 20)
         
         view.addSubview(squareView)
         view.addSubview(slider)
         
-        initAnimation()
+        animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
+        animator.pausesOnCompletion = true
+        animator.addAnimations {
+            self.squareView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2).scaledBy(x: 1.5, y: 1.5)
+            self.squareView.frame.origin.x = self.view.frame.width-self.squareView.frame.width-self.margins.right
+        }
         slider.addTarget(self, action: #selector(releaseSlider), for: .touchUpInside)
         slider.addTarget(self, action: #selector(releaseSlider), for: .touchDragOutside)
         slider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+    }
+    
+    @objc func sliderValueChanged() {
+        animator.fractionComplete = CGFloat( slider.value )
     }
     @objc func releaseSlider(){
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
@@ -41,18 +52,5 @@ class ViewController: UIViewController {
         if(animator.isRunning){
             slider.value=Float(animator.fractionComplete)
         }
-    }
-    func initAnimation() {
-        let endFrame = CGRect(x: view.frame.width - squareView.frame.width*1.5-view.layoutMargins.right, y: squareView.frame.origin.y-squareView.frame.width*0.5/2, width: squareView.frame.width*1.5, height: squareView.frame.height*1.5)
-        print(endFrame.minX+squareView.frame.width*1.5+view.layoutMargins.right)
-        animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
-        animator.pausesOnCompletion = true
-        animator.addAnimations {
-            self.squareView.frame = endFrame
-            self.squareView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
-        }
-    }
-    @objc func sliderValueChanged() {
-        animator.fractionComplete = CGFloat( slider.value )
     }
 }

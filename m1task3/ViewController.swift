@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     func initAnimation() {
-        let endFrame = CGRect(x: view.frame.width - view.layoutMargins.right - view.layoutMargins.left - squareView.frame.width, y: squareView.frame.origin.y, width: squareView.frame.width, height: squareView.frame.height)
+        let endFrame = CGRect(x: view.frame.width - squareView.frame.width*1.5, y: squareView.frame.origin.y, width: squareView.frame.width, height: squareView.frame.height)
         
         animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
         animator.pausesOnCompletion = true

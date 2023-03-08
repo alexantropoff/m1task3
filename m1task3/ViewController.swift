@@ -16,8 +16,7 @@ class ViewController: UIViewController {
     var squareWidth: CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.layoutMargins=UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16
-        )
+        view.layoutMargins=UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16 )
         margins=view.layoutMargins
         squareWidth = view.frame.width/6
         squareView.frame = CGRect(x: margins.left, y: margins.top + squareWidth, width: squareWidth, height: squareWidth)
